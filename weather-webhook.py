@@ -2,7 +2,7 @@ import json
 import os
 import requests
 
-from flask import flask
+from flask import Flask
 from flask import request
 from flask import make_response 
 
@@ -21,7 +21,7 @@ def webhook():
     return r
 
 def makeResponse(req):
-    result = req.get("result")
+    result = req.get("queryResult")
     parameters =   result.get("parameters")
     city = parameters.get("geo-city")
     date = parameters.get("date")
@@ -38,12 +38,12 @@ def makeResponse(req):
     speech = "the forecast for" + city + "for" + date + "is"+condition
 
     return {
-        "speech" = speech,
-        "displayText" = speech,
-        "source" = "apiai-weather-webhook"
+        "speech": speech,
+        "displayText":speech,
+        "source": "apiai-weather-webhook"
     }
 
-if __name__ = '__main__' :
+if __name__ == '__main__' :
     port = int (os.getenv('PORT',5000))
-    print("starting up the flask app on port %d" %port)
-    app.run(debug = False, port = port , host = 0.0.0.0 ) 
+    print("starting up the flask app on port %d" % port)
+    app.run(debug = False, port = port , host = '0.0.0.0' ) 
