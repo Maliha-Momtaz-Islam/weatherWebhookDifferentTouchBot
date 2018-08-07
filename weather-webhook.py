@@ -21,7 +21,7 @@ def webhook():
     return r
 
 def makeResponse(req):
-    result = req.get("queryResult")
+    result = req.get("result")
     parameters =   result.get("parameters")
     city = parameters.get("geo-city")
     date = parameters.get("date")
