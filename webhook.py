@@ -25,7 +25,7 @@ def webhook():
 def makeResponse(req):
     if req.get("result").get("action") != "fetchWeatherForecast":
         return {}
-    result = req.get("queryResult")
+    result = req.get("result")
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
     date = parameters.get("date")
@@ -42,7 +42,7 @@ def makeResponse(req):
     return {
     "speech": speech,
     "displayText": speech,
-    "source": "apiai-weather-webhook"
+    "source": "agent"
     }
 
 if __name__ == '__main__':
